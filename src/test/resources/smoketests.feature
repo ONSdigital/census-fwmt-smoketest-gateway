@@ -70,7 +70,7 @@ Feature: Check all services are running and accessible
 
 @SmokeTest, @JobService, @CheckRabbitJobServiceadapter-jobSvc.DLQ
  Scenario: Check JobService can access adapter-jobSvc.DLQ Rabbit Q
-    When Check JobService can access adapter-jobSvc.DLQv Rabbit Q
+    When Check JobService can access adapter-jobSvc.DLQ Rabbit Q
 
 @SmokeTest, @JobService, @CheckRabbitJobServicejobSvc-adapter.DLQ
  Scenario: Check JobService can access jobSvc-adapter.DLQ Rabbit Q
