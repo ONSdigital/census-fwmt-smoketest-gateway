@@ -18,7 +18,7 @@ task cucumber(dependsOn: testClasses) {
 		javaexec {
 			main = "cucumber.api.cli.Main"
 			classpath = configurations.testRuntimeClasspath + sourceSets.main.output + sourceSets.test.output
-			args = ['--plugin', 'pretty', '--glue', 'uk.gov.ons.fwmt.smoketest.gateway', 'src/test/resources']
+			args = ['--plugin', 'pretty', '--plugin', 'json:build/cucumber-report.json', '--glue', 'uk.gov.ons.fwmt.smoketest.gateway', 'src/test/resources']
 		}
 	}
 }
@@ -27,6 +27,7 @@ test {
 	dependsOn cleanTest
 	testLogging.showStandardStreams = true
 	systemProperties System.getProperties()
+	dependsOn cucumber
 }
 
 configurations {
