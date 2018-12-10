@@ -7,10 +7,6 @@ Feature: Check all services are running and accessible
  @SmokeTest, @RMAdpter, @CheckRabbitRMActionField
  Scenario: Check RM Adapter can access Action.Field Rabbit Q
     When Check RM Adapter can access Action.Field Rabbit Q
-
- @SmokeTest, @RMAdpter, @CheckRabbitRMrm-jobsvc-exchange
- Scenario: Check RM Adapter can access rm-jobsvc-exchange Rabbit Q
-    When Check RM Adapter can access rm-jobsvc-exchange Rabbit Q
     
  @SmokeTest, @RMAdpter, @CheckRabbitRMadapter-jobSvc
  Scenario: Check RM Adapter can access adapter-jobSvc Rabbit Q
@@ -49,10 +45,6 @@ Feature: Check all services are running and accessible
  @SmokeTest, @JobServ, @CheckJobService
  Scenario: Check Job Service is running
     When Check Job Service is running
-
- @SmokeTest, @JobService, @CheckRabbitJobServicerm-jobsvc-exchange
- Scenario: Check JobService can access rm-jobsvc-exchange Rabbit Q
-    When Check JobService can access rm-jobsvc-exchange Rabbit Q
     
  @SmokeTest, @JobService, @CheckRabbitJobServiceadapter-jobSvc
  Scenario: Check JobService can access adapter-jobSvc Rabbit Q
