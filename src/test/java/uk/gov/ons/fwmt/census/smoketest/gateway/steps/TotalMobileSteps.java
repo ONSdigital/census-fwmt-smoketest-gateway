@@ -1,10 +1,10 @@
-package uk.gov.ons.fwmt.smoketest.gateway.steps;
+package uk.gov.ons.fwmt.census.smoketest.gateway.steps;
 
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cucumber.api.java.en.Given;
-import uk.gov.ons.fwmt.smoketest.gateway.TotalMobileHelper;
+import uk.gov.ons.fwmt.census.smoketest.gateway.TotalMobileHelper;
 
 public class TotalMobileSteps {
   @Autowired

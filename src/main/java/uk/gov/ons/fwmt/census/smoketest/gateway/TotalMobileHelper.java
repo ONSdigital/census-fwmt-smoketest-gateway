@@ -1,4 +1,4 @@
-package uk.gov.ons.fwmt.smoketest.gateway;
+package uk.gov.ons.fwmt.census.smoketest.gateway;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
