@@ -1,1 +1,1 @@
-# fwmt-smoketest-gateway
+# fwmt-census-smoketest-gateway
