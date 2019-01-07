@@ -32,7 +32,7 @@ public final class JobServiceHelper {
     RestTemplate restTemplate = new RestTemplate();
 
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> response = restTemplate.exchange(url + "/health", HttpMethod.GET, request, String.class);
+    ResponseEntity<String> response = restTemplate.exchange(url + "/actuator/health", HttpMethod.GET, request, String.class);
     String result = response.getBody();
 
     // true if we can access the Job Service
@@ -53,5 +53,4 @@ public final class JobServiceHelper {
     // true if we can access RabbitMQ
     return "true".equals(result);
   }
-
 }

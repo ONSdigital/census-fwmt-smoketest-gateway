@@ -22,15 +22,13 @@ public final class TotalMobileHelper {
   @Value("${service.tm.url}")
   private String url;
 
-  @Value("${service.tm.wsdl}")
-  private String wsdlPath;
-
   public boolean checkAppIsRunning() {
     HttpHeaders headers = new HttpHeaders();
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
     RestTemplate restTemplate = new RestTemplate();
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> response = restTemplate.exchange(url + wsdlPath, HttpMethod.GET, request, String.class);
+    // TODO remove this TEMPORARY change to allow it to detect the real TM Comet instance, instead of just the mock health endpoint
+    ResponseEntity<String> response = restTemplate.exchange(url + "/actuator/health", HttpMethod.GET, request, String.class);
     HttpStatus result = response.getStatusCode();
 
     // true if TM is running
