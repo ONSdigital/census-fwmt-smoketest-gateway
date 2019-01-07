@@ -13,6 +13,10 @@ plugins {
     id 'eclipse'
 }
 
+description = 'fwmt-census-smoketest-gateway'
+group = 'uk.gov.ons.fwmt'
+version = '3.0.0-SNAPSHOT'
+
 sourceCompatibility = 11
 targetCompatibility = 11
 

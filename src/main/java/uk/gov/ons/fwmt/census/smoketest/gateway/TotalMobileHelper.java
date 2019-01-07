@@ -15,25 +15,25 @@ import org.springframework.web.client.RestTemplate;
 public final class TotalMobileHelper {
   @Value("${service.tm.username}")
   private String username;
-  
+
   @Value("${service.tm.password}")
   private String password;
-  
+
   @Value("${service.tm.url}")
   private String url;
 
   @Value("${service.tm.wsdl}")
   private String wsdlPath;
 
-  public boolean checkAppIsRunning(){
+  public boolean checkAppIsRunning() {
     HttpHeaders headers = new HttpHeaders();
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
     RestTemplate restTemplate = new RestTemplate();
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> response = restTemplate.exchange(url+wsdlPath, HttpMethod.GET, request, String.class);
+    ResponseEntity<String> response = restTemplate.exchange(url + wsdlPath, HttpMethod.GET, request, String.class);
     HttpStatus result = response.getStatusCode();
 
-    boolean isRunning = HttpStatus.OK.equals(result);
-    return isRunning;
+    // true if TM is running
+    return HttpStatus.OK.equals(result);
   }
 }

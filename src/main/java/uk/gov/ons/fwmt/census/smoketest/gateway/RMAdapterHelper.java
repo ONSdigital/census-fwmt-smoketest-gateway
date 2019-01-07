@@ -14,36 +14,40 @@ import org.springframework.web.client.RestTemplate;
 public final class RMAdapterHelper {
   @Value("${service.rmadmpter.url}")
   private String url;
-  
+
   @Value("${service.rmadmpter.rabbitmqcheck.url}")
   private String rabbitCheckUrl;
-    
+
   @Value("${service.rmadmpter.username}")
   private String username;
 
   @Value("${service.rmadmpter.password}")
   private String password;
 
-  public boolean checkAppIsRunning(){
+  public boolean checkAppIsRunning() {
     HttpHeaders headers = new HttpHeaders();
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
 
     RestTemplate restTemplate = new RestTemplate();
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> result = restTemplate.exchange(url+"/actuator/health", HttpMethod.GET, request, String.class);
-    boolean isRunning = result.getBody().contains("\"status\":\"UP\"");
-    return isRunning;
+    ResponseEntity<String> result = restTemplate
+        .exchange(url + "/actuator/health", HttpMethod.GET, request, String.class);
+
+    // true if we can access the RM adapter
+    return result.getBody().contains("\"status\":\"UP\"");
   }
 
-  public boolean canAccessRabbitQ(String qname){
+  public boolean canAccessRabbitQ(String qname) {
     HttpHeaders headers = new HttpHeaders();
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
 
     RestTemplate restTemplate = new RestTemplate();
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> result = restTemplate.exchange(rabbitCheckUrl+qname, HttpMethod.GET, request, String.class);
-    boolean canAccessRabbitQ = result.getBody().equalsIgnoreCase("true");
-    return canAccessRabbitQ;
+    ResponseEntity<String> result = restTemplate
+        .exchange(rabbitCheckUrl + qname, HttpMethod.GET, request, String.class);
+
+    // true if we can access RabbitMQ
+    return result.getBody().equalsIgnoreCase("true");
   }
-  
+
 }

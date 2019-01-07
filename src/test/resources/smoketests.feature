@@ -5,85 +5,80 @@ Feature: Check all services are running and accessible
 #  Refer to confluence on how to test this manually                 #
 #####################################################################
 #
-# @SmokeTest, @RMAdpter, @CheckRMAdpater
-# Scenario: Check RmAdpater is running
-#    When Check RmAdpater is running
+# @SmokeTest @RMAdapter @CheckRMAdapter
+# Scenario: Check RMAdapter is running
+#    When Check RMAdapter is running
 #
-# @SmokeTest, @RMAdpter, @CheckRabbitRMActionField
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitQueueActionField
 # Scenario: Check RM Adapter can access Action.Field Rabbit Q
-#    When Check RM Adapter can access Action.Field Rabbit Q
+#    When JobService can access the RabbitMQ queue "Action.Field"
 #
-# @SmokeTest, @RMAdpter, @CheckRabbitRMadapter-jobSvc
-# Scenario: Check RM Adapter can access adapter-jobSvc Rabbit Q
-#    When Check RM Adapter can access adapter-jobSvc Rabbit Q
-#
-# @SmokeTest, @RMAdpter, @CheckRabbitRMjobsvc-adapter
-# Scenario: Check RM Adapter can access jobsvc-adapter Rabbit Q
-#    When Check RM Adapter can access jobsvc-adapter Rabbit Q
-#
-# @SmokeTest, @RMAdpter, @CheckRabbitRMadapter-rm
-# Scenario: Check RM Adapter can access adapter-rm Rabbit Q
-#    When Check RM Adapter can access adapter-rm Rabbit Q
-#
-#
-# @SmokeTest, @RMAdpter, @CheckRabbitRMadapter-jobSvc.DLQ
-# Scenario: Check RM Adapter can access adapter-jobSvc.DLQ Rabbit Q
-#    When Check RM Adapter can access adapter-jobSvc.DLQ Rabbit Q
-#
-# @SmokeTest, @RMAdpter, @CheckRabbitRMjobSvc-adapter.DLQ
-# Scenario: Check RM Adapter can access jobSvc-adapter.DLQ Rabbit Q
-#    When Check RM Adapter can access jobSvc-adapter.DLQ Rabbit Q
-#
-# @SmokeTest, @RMAdpter, @CheckRabbitRMrm-adapter.DLQ
-# Scenario: Check RM Adapter can access rm-adapter.DLQ Rabbit Q
-#    When Check RM Adapter can access rm-adapter.DLQ Rabbit Q
-#
-# @SmokeTest, @RMAdpter, @CheckRabbitRMaadapter-rm.DLQ
-# Scenario: Check RM Adapter can access adapter-rm.DLQ Rabbit Q
-#    When Check RM Adapter can access adapter-rm.DLQ Rabbit Q
-#
-# @SmokeTest, @RMAdpter, @CheckRabbitRMAction.FieldDLQ
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitQueueAction.FieldDLQ
 # Scenario: Check RM Adapter can access Action.FieldDLQ Rabbit Q
-#    When Check RM Adapter can access Action.FieldDLQ Rabbit Q
+#    When JobService can access the RabbitMQ queue "Action.FieldDLQ"
+#
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitQueueAdapter-jobSvc
+# Scenario: Check RM Adapter can access adapter-jobSvc Rabbit Q
+#    When JobService can access the RabbitMQ queue "adapter-jobSvc"
+#
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitQueueAdapter-jobSvc.DLQ
+# Scenario: Check RM Adapter can access adapter-jobSvc.DLQ Rabbit Q
+#    When JobService can access the RabbitMQ queue "adapter-jobSvc.DLQ"
+#
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitQueueJobsvc-adapter
+# Scenario: Check RM Adapter can access jobSvc-adapter Rabbit Q
+#    When JobService can access the RabbitMQ queue "jobSvc-adapter"
+#
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitQueueJobSvc-adapter.DLQ
+# Scenario: Check RM Adapter can access jobSvc-adapter.DLQ Rabbit Q
+#    When JobService can access the RabbitMQ queue "jobSvc-adapter.DLQ"
+#
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitRMadapter-rm
+# Scenario: Check RM Adapter can access adapter-rm Rabbit Q
+#    When JobService can access the RabbitMQ queue "adapter-rm"
+#
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitRMaadapter-rm.DLQ
+# Scenario: Check RM Adapter can access adapter-rm.DLQ Rabbit Q
+#    When JobService can access the RabbitMQ queue "adapter-rm.DLQ"
+#
+# @SmokeTest @RMAdapter @CheckRabbit @CheckRabbitRMrm-adapter.DLQ
+# Scenario: Check RM Adapter can access rm-adapter.DLQ Rabbit Q
+#    When JobService can access the RabbitMQ queue "rm-adapter.DLQ"
 #####################################################################
 
- @SmokeTest, @JobServ, @CheckJobService
- Scenario: Check Job Service is running
+  @SmokeTest @JobService @CheckJobService
+  Scenario: Check Job Service is running
     When Check Job Service is running
 
- @SmokeTest, @JobService, @CheckRabbitJobServiceadapter-jobSvc
- Scenario: Check JobService can access adapter-jobSvc Rabbit Q
-    When Check JobService can access adapter-jobSvc Rabbit Q
+  @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-jobSvc
+  Scenario: Check JobService can access adapter-jobSvc Rabbit Q
+    When JobService can access the RabbitMQ queue "adapter-jobSvc"
 
- @SmokeTest, @JobService, @CheckRabbitJobServicejobsvc-adapter
- Scenario: Check JobService can access jobsvc-adapter Rabbit Q
-    When Check JobService can access jobsvc-adapter Rabbit Q
+  @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-jobSvc.DLQ
+  Scenario: Check JobService can access adapter-jobSvc.DLQ Rabbit Q
+    When JobService can access the RabbitMQ queue "adapter-jobSvc.DLQ"
 
- @SmokeTest, @JobService, @CheckRabbitJobServiceadapter-rm
- Scenario: Check JobService can access adapter-rm Rabbit Q
-    When Check JobService can access adapter-rm Rabbit Q
+  @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueJobsvc-adapter
+  Scenario: Check JobService can access jobsvc-adapter Rabbit Q
+    When JobService can access the RabbitMQ queue "jobSvc-adapter"
 
+  @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueJobSvc-adapter.DLQ
+  Scenario: Check JobService can access jobSvc-adapter.DLQ Rabbit Q
+    When JobService can access the RabbitMQ queue "jobSvc-adapter.DLQ"
 
+  @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-rm
+  Scenario: Check JobService can access adapter-rm Rabbit Q
+    When JobService can access the RabbitMQ queue "adapter-rm"
 
-@SmokeTest, @JobService, @CheckRabbitJobServiceadapter-jobSvc.DLQ
- Scenario: Check JobService can access adapter-jobSvc.DLQ Rabbit Q
-    When Check JobService can access adapter-jobSvc.DLQv Rabbit Q
+  @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-rm.DLQ
+  Scenario: Check JobService can access adapter-rm.DLQ Rabbit Q
+    When JobService can access the RabbitMQ queue "adapter-rm.DLQ"
 
-@SmokeTest, @JobService, @CheckRabbitJobServicejobSvc-adapter.DLQ
- Scenario: Check JobService can access jobSvc-adapter.DLQ Rabbit Q
-    When Check JobService can access jobSvc-adapter.DLQ Rabbit Q
+  @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueRm-adapter.DLQ
+  Scenario: Check JobService can access rm-adapter.DLQ Rabbit Q
+    When JobService can access the RabbitMQ queue "rm-adapter.DLQ"
 
-@SmokeTest, @JobService, @CheckRabbitJobServicerm-adapter.DLQ
- Scenario: Check JobService can access rm-adapter.DLQ Rabbit Q
-    When Check JobService can access rm-adapter.DLQ Rabbit Q
-
-@SmokeTest, @JobService, @CheckRabbitJobServiceadapter-rm.DLQ
- Scenario: Check JobService can access adapter-rm.DLQ Rabbit Q
-    When Check JobService can access adapter-rm.DLQ Rabbit Q
-
-
- @SmokeTest, @CheckTotalMobile
- Scenario: Check Tmoblie is running
+  @SmokeTest @CheckTotalMobile
+  Scenario: Check Tmoblie is running
     When Check Tmoblie is running
-    
-    
+
