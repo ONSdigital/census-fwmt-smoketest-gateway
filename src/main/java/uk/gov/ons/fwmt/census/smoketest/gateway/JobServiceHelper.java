@@ -32,11 +32,12 @@ public final class JobServiceHelper {
     RestTemplate restTemplate = new RestTemplate();
 
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> response = restTemplate.exchange(url + "/actuator/health", HttpMethod.GET, request, String.class);
+    ResponseEntity<String> response = restTemplate
+        .exchange(url + "/actuator/health", HttpMethod.GET, request, String.class);
     String result = response.getBody();
 
     // true if we can access the Job Service
-    return result.contains("\"status\":\"UP\"");
+    return (result != null) && result.contains("\"status\":\"UP\"");
   }
 
   public boolean canAccessRabbitQ(String qname) {
@@ -46,11 +47,10 @@ public final class JobServiceHelper {
     RestTemplate restTemplate = new RestTemplate();
 
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> response = restTemplate
-        .exchange(rabbitCheckUrl + qname, HttpMethod.GET, request, String.class);
+    ResponseEntity<String> response = restTemplate.exchange(rabbitCheckUrl, HttpMethod.GET, request, String.class);
     String result = response.getBody();
 
     // true if we can access RabbitMQ
-    return "true".equals(result);
+    return (result != null) && result.contains(qname);
   }
 }
