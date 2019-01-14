@@ -52,31 +52,31 @@ Feature: Check all services are running and accessible
 
   @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-jobSvc
   Scenario: Check JobService can access adapter-jobSvc Rabbit Q
-    When JobService can access the RabbitMQ queue "adapter-jobSvc"
+    When JobService can access the RabbitMQ queue "gateway.actions"
 
   @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-jobSvc.DLQ
   Scenario: Check JobService can access adapter-jobSvc.DLQ Rabbit Q
-    When JobService can access the RabbitMQ queue "adapter-jobSvc.DLQ"
+    When JobService can access the RabbitMQ queue "gateway.actions.DLQ"
 
   @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueJobsvc-adapter
   Scenario: Check JobService can access jobsvc-adapter Rabbit Q
-    When JobService can access the RabbitMQ queue "jobSvc-adapter"
+    When JobService can access the RabbitMQ queue "gateway.feedback"
 
   @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueJobSvc-adapter.DLQ
   Scenario: Check JobService can access jobSvc-adapter.DLQ Rabbit Q
-    When JobService can access the RabbitMQ queue "jobSvc-adapter.DLQ"
+    When JobService can access the RabbitMQ queue "gateway.feedback.DLQ"
 
   @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-rm
   Scenario: Check JobService can access adapter-rm Rabbit Q
-    When JobService can access the RabbitMQ queue "adapter-rm"
+    When JobService can access the RabbitMQ queue "rm.feedback"
 
   @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueAdapter-rm.DLQ
   Scenario: Check JobService can access adapter-rm.DLQ Rabbit Q
-    When JobService can access the RabbitMQ queue "adapter-rm.DLQ"
+    When JobService can access the RabbitMQ queue "rm.feedback.DLQ"
 
   @SmokeTest @JobService @CheckRabbit @CheckRabbitQueueRm-adapter.DLQ
   Scenario: Check JobService can access rm-adapter.DLQ Rabbit Q
-    When JobService can access the RabbitMQ queue "rm-adapter.DLQ"
+    When JobService can access the RabbitMQ queue "rm.feedback.DLQ"
 
   @SmokeTest @CheckTotalMobile
   Scenario: Check Tmoblie is running
