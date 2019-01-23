@@ -6,6 +6,10 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import uk.gov.ons.fwmt.census.smoketest.gateway.JobServiceHelper;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class JobServiceSteps {
   @Autowired
   private JobServiceHelper jobServiceHelper;
@@ -15,8 +19,10 @@ public class JobServiceSteps {
     Assert.assertTrue(jobServiceHelper.checkAppIsRunning());
   }
 
-  @When("JobService can access the RabbitMQ queue {string}")
-  public void jobService_can_access_rabbitmq_queue(String queueName) {
-    Assert.assertTrue(jobServiceHelper.canAccessRabbitQ(queueName));
+  @When("JobService can access the queues")
+  public void jobService_can_access_queues() {
+    final List<String> result = jobServiceHelper.canAccessRabbitQ();
+    assertThat(result)
+        .containsOnly("gateway.feedback", "gateway.feedback.DLQ", "gateway.actions", "gateway.actions.DLQ");
   }
 }

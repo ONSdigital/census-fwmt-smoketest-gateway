@@ -20,7 +20,7 @@ public final class TotalMobileHelper {
   private String password;
 
   @Value("${service.tm.url}")
-  private String url;
+  private String tmSwaggerEndpoint;
 
   @Value("${service.tm.casesPath}")
   private String casesPath;
@@ -31,10 +31,10 @@ public final class TotalMobileHelper {
     RestTemplate restTemplate = new RestTemplate();
     HttpEntity<String> request = new HttpEntity<String>(headers);
     // TODO remember that the mock returns a 501 Unimplemented for this endpoint, which should be fixed
-    ResponseEntity<String> response = restTemplate.exchange(url + casesPath, HttpMethod.GET, request, String.class);
+    ResponseEntity<String> response = restTemplate.exchange(tmSwaggerEndpoint, HttpMethod.GET, request, String.class);
     HttpStatus result = response.getStatusCode();
 
     // true if TM is running
-    return HttpStatus.OK.equals(result);
+    return result.is2xxSuccessful();
   }
 }
