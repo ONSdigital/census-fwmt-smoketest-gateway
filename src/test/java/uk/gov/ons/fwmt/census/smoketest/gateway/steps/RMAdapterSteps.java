@@ -6,6 +6,10 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import uk.gov.ons.fwmt.census.smoketest.gateway.RMAdapterHelper;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class RMAdapterSteps {
   @Autowired
   private RMAdapterHelper rmAdapterHelper;
@@ -15,9 +19,12 @@ public class RMAdapterSteps {
     Assert.assertTrue(rmAdapterHelper.checkAppIsRunning());
   }
 
-  @When("RMAdapter can access the RabbitMQ queue {string}")
-  public void jobService_can_access_rabbitmq_queue(String queueName) {
-    Assert.assertTrue(rmAdapterHelper.canAccessRabbitQ(queueName));
+  @When("RMAdapter can access the queues")
+  public void RMAdapter_can_access_rabbitmq_queue() {
+    final List<String> result = rmAdapterHelper.fetchAccessibleRabbitQueues();
+    assertThat(result)
+        .containsOnly("gateway.feedback", "gateway.feedback.DLQ", "gateway.actions", "gateway.actions.DLQ",
+            "Action.Field", "Action.FieldDLQ", "rm.feedback", "rm.feedback.DLQ");
   }
 
 }
