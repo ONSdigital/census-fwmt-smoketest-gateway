@@ -21,7 +21,7 @@ public class JobServiceSteps {
 
   @When("JobService can access the queues")
   public void jobService_can_access_queues() {
-    final List<String> result = jobServiceHelper.canAccessRabbitQ();
+    final List<String> result = jobServiceHelper.fetchAccessibleRabbitQueues();
     assertThat(result)
         .containsOnly("gateway.feedback", "gateway.feedback.DLQ", "gateway.actions", "gateway.actions.DLQ");
   }

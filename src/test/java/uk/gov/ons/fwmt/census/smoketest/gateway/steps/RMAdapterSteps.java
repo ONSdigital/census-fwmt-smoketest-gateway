@@ -21,7 +21,7 @@ public class RMAdapterSteps {
 
   @When("RMAdapter can access the queues")
   public void RMAdapter_can_access_rabbitmq_queue() {
-    final List<String> result = rmAdapterHelper.canAccessRabbitQ();
+    final List<String> result = rmAdapterHelper.fetchAccessibleRabbitQueues();
     assertThat(result)
         .containsOnly("gateway.feedback", "gateway.feedback.DLQ", "gateway.actions", "gateway.actions.DLQ",
             "Action.Field", "Action.FieldDLQ", "rm.feedback", "rm.feedback.DLQ");

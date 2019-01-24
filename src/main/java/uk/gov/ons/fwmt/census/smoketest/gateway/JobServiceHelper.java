@@ -43,7 +43,7 @@ public final class JobServiceHelper {
     return (result != null) && result.contains("\"status\":\"UP\"");
   }
 
-  public List<String> canAccessRabbitQ() {
+  public List<String> fetchAccessibleRabbitQueues() {
     HttpHeaders headers = new HttpHeaders();
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
 
