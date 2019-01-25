@@ -3,6 +3,8 @@ package uk.gov.ons.fwmt.census.smoketest.gateway.steps;
 import cucumber.api.java.en.Given;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import uk.gov.ons.fwmt.census.smoketest.gateway.AppConfiguration;
 import uk.gov.ons.fwmt.census.smoketest.gateway.TotalMobileHelper;
 
 public class TotalMobileSteps {
