@@ -1,4 +1,4 @@
-package uk.gov.ons.fwmt.census.smoketest.gateway;
+package uk.gov.ons.census.fwmt.smoketest.gateway;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.http.HttpHeaders;
