@@ -13,7 +13,7 @@ plugins {
     id 'eclipse'
 }
 
-description = 'fwmt-census-smoketest-gateway'
+description = 'census-fwmt-smoketest-gateway'
 group = 'uk.gov.ons.fwmt'
 version = '3.0.0-SNAPSHOT'
 
