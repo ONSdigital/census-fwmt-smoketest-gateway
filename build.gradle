@@ -14,7 +14,7 @@ plugins {
 }
 
 description = 'census-fwmt-smoketest-gateway'
-group = 'uk.gov.ons.fwmt'
+group = 'uk.gov.ons.census.fwmt'
 version = '3.0.0-SNAPSHOT'
 
 sourceCompatibility = 11
