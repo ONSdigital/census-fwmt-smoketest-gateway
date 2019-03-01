@@ -1,4 +1,4 @@
-package uk.gov.ons.fwmt.census.smoketest.gateway;
+package uk.gov.ons.census.fwmt.smoketest.gateway;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -14,30 +14,33 @@ import java.util.List;
 
 @Component
 @PropertySource("classpath:application.properties")
-public final class RMAdapterHelper {
-  @Value("${service.rmadmpter.url}")
+public final class JobServiceHelper {
+
+  @Value("${service.jobservice.url}")
   private String url;
 
-  @Value("${service.rmadmpter.rabbitmqcheck.url}")
-  private String rabbitCheckUrl;
-
-  @Value("${service.rmadmpter.username}")
+  @Value("${service.jobservice.username}")
   private String username;
 
-  @Value("${service.rmadmpter.password}")
+  @Value("${service.jobservice.password}")
   private String password;
+
+  @Value("${service.jobservice.rabbitmqcheck.url}")
+  private String rabbitCheckUrl;
 
   public boolean checkAppIsRunning() {
     HttpHeaders headers = new HttpHeaders();
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
 
     RestTemplate restTemplate = new RestTemplate();
-    HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> result = restTemplate
-        .exchange(url + "/health", HttpMethod.GET, request, String.class);
 
-    // true if we can access the RM adapter
-    return result.getBody().contains("\"status\":\"UP\"");
+    HttpEntity<String> request = new HttpEntity<String>(headers);
+    ResponseEntity<String> response = restTemplate
+        .exchange(url + "/health", HttpMethod.GET, request, String.class);
+    String result = response.getBody();
+
+    // true if we can access the Job Service
+    return (result != null) && result.contains("\"status\":\"UP\"");
   }
 
   public List<String> fetchAccessibleRabbitQueues() {
@@ -45,14 +48,13 @@ public final class RMAdapterHelper {
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
 
     RestTemplate restTemplate = new RestTemplate();
+
     HttpEntity<String> request = new HttpEntity<String>(headers);
     ResponseEntity<List<String>> response = restTemplate
         .exchange(rabbitCheckUrl, HttpMethod.GET, request, new ParameterizedTypeReference<List<String>>() {
         });
-
-    // true if we can access RabbitMQ
     List<String> result = response.getBody();
+
     return result;
   }
-
 }

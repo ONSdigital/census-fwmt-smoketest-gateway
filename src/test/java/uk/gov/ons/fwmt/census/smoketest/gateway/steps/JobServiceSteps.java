@@ -1,10 +1,10 @@
-package uk.gov.ons.fwmt.census.smoketest.gateway.steps;
+package uk.gov.ons.census.fwmt.smoketest.gateway.steps;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
-import uk.gov.ons.fwmt.census.smoketest.gateway.JobServiceHelper;
+import uk.gov.ons.census.fwmt.smoketest.gateway.JobServiceHelper;
 
 import java.util.List;
 

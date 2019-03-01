@@ -1,4 +1,4 @@
-package uk.gov.ons.fwmt.census.smoketest.gateway;
+package uk.gov.ons.census.fwmt.smoketest.gateway;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -14,33 +14,30 @@ import java.util.List;
 
 @Component
 @PropertySource("classpath:application.properties")
-public final class JobServiceHelper {
-
-  @Value("${service.jobservice.url}")
+public final class RMAdapterHelper {
+  @Value("${service.rmadmpter.url}")
   private String url;
 
-  @Value("${service.jobservice.username}")
+  @Value("${service.rmadmpter.rabbitmqcheck.url}")
+  private String rabbitCheckUrl;
+
+  @Value("${service.rmadmpter.username}")
   private String username;
 
-  @Value("${service.jobservice.password}")
+  @Value("${service.rmadmpter.password}")
   private String password;
-
-  @Value("${service.jobservice.rabbitmqcheck.url}")
-  private String rabbitCheckUrl;
 
   public boolean checkAppIsRunning() {
     HttpHeaders headers = new HttpHeaders();
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
 
     RestTemplate restTemplate = new RestTemplate();
-
     HttpEntity<String> request = new HttpEntity<String>(headers);
-    ResponseEntity<String> response = restTemplate
+    ResponseEntity<String> result = restTemplate
         .exchange(url + "/health", HttpMethod.GET, request, String.class);
-    String result = response.getBody();
 
-    // true if we can access the Job Service
-    return (result != null) && result.contains("\"status\":\"UP\"");
+    // true if we can access the RM adapter
+    return result.getBody().contains("\"status\":\"UP\"");
   }
 
   public List<String> fetchAccessibleRabbitQueues() {
@@ -48,13 +45,14 @@ public final class JobServiceHelper {
     SmokeTestHelper.addBasicAuthentication(headers, username, password);
 
     RestTemplate restTemplate = new RestTemplate();
-
     HttpEntity<String> request = new HttpEntity<String>(headers);
     ResponseEntity<List<String>> response = restTemplate
         .exchange(rabbitCheckUrl, HttpMethod.GET, request, new ParameterizedTypeReference<List<String>>() {
         });
-    List<String> result = response.getBody();
 
+    // true if we can access RabbitMQ
+    List<String> result = response.getBody();
     return result;
   }
+
 }
